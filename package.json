@@ -1,7 +1,13 @@
 {
 	"name": "lvyue-sort-import",
-	"displayName": "lvyue-sort-import",
-	"description": "",
+	"displayName": "Lvyuey VS Code 引入文件排序插件",
+	"description": "对ts或js文件的import进行排序",
+	"keywords": [
+		"lvyue",
+		"sort",
+		"import",
+		"import sort"
+	],
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.43.0"
@@ -10,16 +16,40 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:extension.helloWorld"
+		"onCommand:extension.sortImportWithLvyueSpecification"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "extension.helloWorld",
-				"title": "Hello World"
+				"command": "extension.sortImportWithLvyueSpecification",
+				"title": "Format Imports Sort"
 			}
-		]
+		],
+		"keybindings": [
+			{
+				"command": "extension.sortImportWithLvyueSpecification",
+				"key": "ctrl+f10",
+				"mac": "cmd+f10",
+				"when": "exitorTextFocus"
+			}
+		],
+		"menus": {
+			"editor/context": [
+				{
+					"when": "editorFocus && resourceLangId == javascript || editorFocus && resourceLangId == javascriptreact || editorFocus && resourceLangId == typescript || editorFocus && resourceLangId == typescriptreact",
+					"command": "extension.sortImportWithLvyueSpecification",
+					"group": "navigation"
+				}
+			],
+			"editor/title": [
+				{
+					"when": "editorFocus && resourceLangId == javascript || editorFocus && resourceLangId == javascriptreact || editorFocus && resourceLangId == typescript || editorFocus && resourceLangId == typescriptreact",
+					"command": "extension.sortImportWithLvyueSpecification",
+					"group": "navigation"
+				}
+			]
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
@@ -41,5 +71,9 @@
 		"mocha": "^7.0.1",
 		"typescript": "^3.7.5",
 		"vscode-test": "^1.3.0"
+	},
+	"dependencies": {
+		"@types/lodash": "^4.14.150",
+		"lodash": "^4.17.15"
 	}
 }
